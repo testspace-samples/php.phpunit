@@ -21,7 +21,7 @@ vendor/bin/phpunit tests/unit --log-junit tests-results.xml --coverage-clover co
 Publishing results example: 
 
 <pre>
-  testspace publish [Tests]tests-results.xml{tests/unit} coverage.xml
+testspace publish [Tests]tests-results.xml{tests/unit} coverage.xml
 </pre> 
 
 Checkout the [sample](http://munderseth.stridespace.com/projects/php/spaces/phpunit.example). 

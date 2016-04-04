@@ -3,4 +3,10 @@ build/code-browser
 build/coverage
 build/logs
 build/pdepend
-phpunit.xml
+
+vendor/
+composer.lock
+
+tests-results.xml
+coverage.xml 
+

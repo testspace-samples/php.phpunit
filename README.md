@@ -6,8 +6,9 @@
 Sample demonstrates techniques for using Testspace with PHP code and the [PHPUnit test framework](https://phpunit.de/).
 
 [![Build Status](https://travis-ci.org/testspace-samples/php.phpunit.svg?branch=master)](https://travis-ci.org/testspace-samples/php.phpunit)
-[![Space Health](http://munderseth.stridespace.com/projects/260/spaces/799/badge)](http://munderseth.stridespace.com/projects/260/spaces/799 "Test Cases")
-[![Space Metric](http://munderseth.stridespace.com/projects/260/spaces/799/metrics/164/badge)](http://munderseth.stridespace.com/projects/260/spaces/799/metrics#metric-164 "Line/Statement Coverage")
+[![Space Health](https://samples.testspace.com/projects/86/spaces/290/badge)](https://samples.testspace.com/projects/86/spaces/290 "Test Cases")
+[![Space Metric](https://samples.testspace.com/projects/86/spaces/290/metrics/185/badge)](https://samples.testspace.com/projects/86/spaces/290/metrics#metric-185 "Line/Statement Coverage")
+
 
 ***
 
@@ -24,12 +25,12 @@ Publishing results example:
 testspace publish [Tests]tests-results.xml{tests/unit} coverage.xml
 </pre> 
 
-Checkout the [sample](http://munderseth.stridespace.com/projects/php/spaces/phpunit.example). 
+Checkout the [Space](https://samples.testspace.com/projects/php/spaces/phpunit). 
 
 ***
 
 To fork this example using Travis requires:
-  - Account at www.testspace.com (use `Open`)
+  - Create an account at www.testspace.com
   - Travis Environment Variables:
-    - The `TESTSPACE_USER_TOKEN` *Name* is set to the *Value* defined as your [Access token](http://help.testspace.com/using-your-organization:user-settings).
-    - The `TESTSPACE_URL` *Name* is set to `my-org-name.testspace.com/my-project/my-space`. Refer [here](http://help.testspace.com/reference:runner-reference#config) for more details. This example uses `samples.testspace.com/php/phpunit.example`.
+    - `TESTSPACE_USER_TOKEN` set to the `value` defined as your [Access token](http://help.testspace.com/using-your-organization:user-settings).
+    - `TESTSPACE_URL` set to `my-org-name.testspace.com/my-project/my-space`. Refer [here](http://help.testspace.com/reference:runner-reference#config) for more details. This example uses `samples.testspace.com/php/phpunit`.

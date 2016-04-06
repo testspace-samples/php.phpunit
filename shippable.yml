@@ -5,7 +5,7 @@ php:
  
 env:
   global: 
-  - secure: T2fTaWiW5BH0kASDo8Re+RsQZYAU+9jmDe3t6OydWCVIBf5/Kt3SZMt44guX8Hg2o4xXhLC+00wha3I01L6usg0DkEN1NWjvad2MJkLbCCguZc0o61focEBBcz5cgVjJtMzgKySgFVe9mDdyeQU2xzciUWTKskGGNGJALxXTbci9hBbjIc1QxBXbhjW2m5/paeKrK6fvXmKxRQQcbVGQf14YoSbLp5/tUgfEXpqEgqbwjN7AVQklx+VBRkVidb0U1WZDrMhGNHscvp2SBrkD9t7wQJucC3tDaGlLwHunFb3exXAEwLcblIdQUWg7uCQOVoVrGAIv7v5zb6AZroK71A==
+   - secure: m/zLPx7jBLGuTcen6dSgQ55Xl1ervUz9SjH+qDY7I6KY09EL2Kq1zqAhYIwQcQ/PMkSPlla3USVM2Rptu7zw55yo7qD/tVJ/Nr3DVlnxt/dW/rjQjgGKy5/ak637ZCTUAmLf1fKYVV2UKfwsOVmZFi79mb3vc828y2UW13AfiJY8nprpeukSBoE+wvNQPiduCrWINS6izqoH+QN3ugRklDQJXew05ZXWjFW4EErOn+rKq/dGVOpfcozkGrCDOl9eg/VP/ec+AVMKvNsywUJYbLwkC2cnsLgTb2bG/PLpoKp27ld6jzdG/Dky6otI+/0oNYz9rJdNkO3oXR0+z4PstQ==
   
 before_script:
   - ./testspace_install.sh

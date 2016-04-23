@@ -5,16 +5,15 @@ php:
  
 env:
   global: 
-   - secure: m/zLPx7jBLGuTcen6dSgQ55Xl1ervUz9SjH+qDY7I6KY09EL2Kq1zqAhYIwQcQ/PMkSPlla3USVM2Rptu7zw55yo7qD/tVJ/Nr3DVlnxt/dW/rjQjgGKy5/ak637ZCTUAmLf1fKYVV2UKfwsOVmZFi79mb3vc828y2UW13AfiJY8nprpeukSBoE+wvNQPiduCrWINS6izqoH+QN3ugRklDQJXew05ZXWjFW4EErOn+rKq/dGVOpfcozkGrCDOl9eg/VP/ec+AVMKvNsywUJYbLwkC2cnsLgTb2bG/PLpoKp27ld6jzdG/Dky6otI+/0oNYz9rJdNkO3oXR0+z4PstQ==
-  
+   - secure: x9LCmBc3wQAwcqqvzCYcfya7V1DcBfflJDF5ANT8GRL29YKAHbh+iCAC77XDnboPG1sfwCMKwCQP7ULvjBL1tSFGrIB+YyvGMDeAzHaGX+jM6bSCOu8fyoy4nHekxALmoZl2Wwj6MnuxZ5+dRiaO/TG7nZRLCg1AncGB0UDEs/Bn23kgPU3GYIeSsVbPbKco8/n9ioMpvTm2lGWgBmu3CfbN4PZrKUq/H5mc3JJd5P5GwlepTJcKoyMnfVZ/+zPBRc9RTZ3dgLOgqoOQVkwB2DPmdvcAs2gqRiBR8xS7gPETX2kJga5/nCcGihHWyhUboPy3UzKdXNww7SuaTxodjw==
+
 before_script:
   - ./testspace_install.sh
+  - export PATH="${HOME}/testspace:${PATH}"
   - mkdir -p shippable/testresults
     
 script: 
-  - export PATH="${HOME}/testspace:${PATH}"
-  - testspace config url $TESTSPACE_TOKEN
-  - testspace import .testspace.xml
-  - testspace run
+  - testspace import .testspace.xml ${TESTSPACE_URL}
+  - testspace run ${TESTSPACE_URL}
    
   - cp tests-results.xml shippable/testresults

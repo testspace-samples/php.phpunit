@@ -7,6 +7,10 @@ build/pdepend
 vendor/
 composer.lock
 
+analysis-sniffer.xml
+analysis-sniffer-blame.txt
+analysis-mess.xml
+
 tests-results.xml
 coverage.xml 
 

@@ -6,8 +6,8 @@ php:
  
 script:
  - composer update
- - vendor/bin/phpcs src tests --report-gitblame=analysis-sniffer-blame.txt --report-checkstyle=analysis-sniffer.xml
- - vendor/bin/phpmd src,tests xml codesize,naming,unusedcode --reportfile analysis-mess.xml
+ - vendor/bin/phpcs src tests --report-gitblame=analysis-sniffer-blame.txt --report-checkstyle=analysis-sniffer.xml || true
+ - vendor/bin/phpmd src,tests xml codesize,naming,unusedcode --reportfile analysis-mess.xml || true
  - vendor/bin/phpunit tests/unit --log-junit tests-results.xml --coverage-clover coverage.xml
 
 after_script: 

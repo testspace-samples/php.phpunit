@@ -1,19 +1,20 @@
 language:
  - php
+
 php:
  - 5.5
  
 env:
   global: 
-   - secure: x9LCmBc3wQAwcqqvzCYcfya7V1DcBfflJDF5ANT8GRL29YKAHbh+iCAC77XDnboPG1sfwCMKwCQP7ULvjBL1tSFGrIB+YyvGMDeAzHaGX+jM6bSCOu8fyoy4nHekxALmoZl2Wwj6MnuxZ5+dRiaO/TG7nZRLCg1AncGB0UDEs/Bn23kgPU3GYIeSsVbPbKco8/n9ioMpvTm2lGWgBmu3CfbN4PZrKUq/H5mc3JJd5P5GwlepTJcKoyMnfVZ/+zPBRc9RTZ3dgLOgqoOQVkwB2DPmdvcAs2gqRiBR8xS7gPETX2kJga5/nCcGihHWyhUboPy3UzKdXNww7SuaTxodjw==
+   - secure: oFIc+lF6znyg9IAaDeFo210Ai7SxO/K0TjJFoTzjc/58jg6Ut9DWJuiIlML+ltrpm8V3GjcW8BfZi/QK2xWPBifa6f8N4ZGXWT1Vh7UIqszFnxrYS9Q+uqi3mFH8Gpsv398Pep3I82uUAmZ9RIbEsS1U9qy9JftXAZYv7LhBDzIQdFChjXZNYGOjqSWmveBa8DJNJoGnORQGTS1wPGTUQMZoucmSbNaCKcUJdlx+831OTe6y0ei43C+VIwmtBzW2+otkK4vWA739N0OgeC58SEEPlBXFSleRZvB2Wq5IGg7M4LXfABB06jT9jVkaxXu0OUBCaFaHhOtZuvirAplnNg==
+  
+script:
+  - composer update
+  - vendor/bin/phpcs src tests --report-gitblame=analysis-sniffer-blame.txt --report-checkstyle=analysis-sniffer.xml
+  - vendor/bin/phpmd src,tests xml codesize,naming,unusedcode --reportfile analysis-mess.xml
+  - vendor/bin/phpunit tests/unit --log-junit tests-results.xml --coverage-clover coverage.xml
+ 
+after_script: 
+  - curl -s https://testspace-client.s3.amazonaws.com/testspace-linux.tgz | sudo tar -zxvf- -C /usr/local/bin
+  - testspace publish @.testspace $TESTSPACE_TOKEN/${BRANCH}#ship.Build.${BUILD_NUMBER}
 
-before_script:
-  - ./testspace_install.sh
-  - export PATH="${HOME}/testspace:${PATH}"
-  - mkdir -p shippable/testresults
-    
-script: 
-  - testspace import .testspace.xml ${TESTSPACE_URL}
-  - testspace run ${TESTSPACE_URL}
-   
-  - cp tests-results.xml shippable/testresults

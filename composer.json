@@ -2,6 +2,8 @@
     "require-dev": {
         "phpunit/phpunit": "4.8.*",
         "phpunit/dbunit": ">=1.2",
-        "phpunit/phpcov": "*"
+        "phpunit/phpcov": "*",
+        "squizlabs/php_codesniffer": "2.*",
+        "phpmd/phpmd" : "@stable"
     }
   }

@@ -3,9 +3,10 @@ machine:
    version: 5.5
  
 test:
-  - vendor/bin/phpcs src tests --report-gitblame=analysis-sniffer-blame.txt --report-checkstyle=analysis-sniffer.xml || true
-  - vendor/bin/phpmd src,tests xml codesize,naming,unusedcode --reportfile analysis-mess.xml || true
-  - vendor/bin/phpunit tests/unit --log-junit tests-results.xml --coverage-clover coverage.xml
+  override:
+    - vendor/bin/phpcs src tests --report-gitblame=analysis-sniffer-blame.txt --report-checkstyle=analysis-sniffer.xml || true
+    - vendor/bin/phpmd src,tests xml codesize,naming,unusedcode --reportfile analysis-mess.xml || true
+    - vendor/bin/phpunit tests/unit --log-junit tests-results.xml --coverage-clover coverage.xml
 
 post:
   - curl -s https://testspace-client.s3.amazonaws.com/testspace-linux.tgz | sudo tar -zxvf- -C /usr/local/bin

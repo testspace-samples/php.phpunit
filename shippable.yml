@@ -6,7 +6,7 @@ php:
  
 env:
   global: 
-   - secure: O+R0KBaA4m1D8tUWv9MyhhGoL7uMT9fZUnslfBb9uim/zo4G6eDvqOwGNtibl9W/eHEV7yG6vy0JK2fb1DiqL11d20ZC4aXe4/T7ZyEXV7OkYZtgdn/ZHwvasS3Otshn5qvCb+M3/J5nxoe+IyjQwS2oDc7w0uoh2IhXx9siRG12fKek/iAXV/RgSCCQFYB/xpXWMmpLZXy613c2oK3Yzo7CzfawxGiyH5BplScFC3Q1fwHKtC3hAhpMHXPzI334dNy8b9L4pQ0DM2JnUeSXZjqBse0R2WcBnhwsxpzjlYzG939lgC7xxySDKEB6TdPC2cS7Le/iVpqgB2qIDKNkmg==
+   - secure: Ug5KuSwbLk2AF5dkSrGZ30VMsKR/UqugSc8y3IJtt1zARJYwNKgRU+e+2MCPBi78P9qZqEnwiK9zNzMpTBO/u8Bbs9/xG/4f0ixPFpyR8KUj8Mb6Kxr38Kr6qu1Wf/JHPW5+jR2sr5Sw2rfjyYACSOGoBExa33hwRoZtqPytghYYafoE+GNjSniwKm7Izub2HDd6zliErsOzcshlH+f76TrqPIqlSYmgDA/5PrPBP3I7QOJ8a5Y8QVQ8RNjI020QpUFqDzi7G/nZ/SmyIcr0oFQYGHmpV0+u196DjWfU/GdY5kygDsbxOgUcLoeWNkLXbTBmOtc2+dgEMj29uFy7Mg==
  
 script:
   - composer update

@@ -1,16 +1,15 @@
 language:
  - php
+ 
 php:
  - 5.5
  
-before_install:
-# Install Testspace Runner
- - ./testspace_install.sh
- - export PATH="${HOME}/testspace:${PATH}" 
- 
 script:
- - composer install
+ - composer update
+ - vendor/bin/phpcs src tests --report-gitblame=analysis-sniffer-blame.txt --report-checkstyle=analysis-sniffer.xml
+ - vendor/bin/phpmd src,tests xml codesize,naming,unusedcode --reportfile analysis-mess.xml
  - vendor/bin/phpunit tests/unit --log-junit tests-results.xml --coverage-clover coverage.xml
- 
-# Publish Test Results along with Coverage
- - testspace publish [Tests]tests-results.xml{tests/unit} coverage.xml ${TESTSPACE_URL}
+
+after_script: 
+ - curl -s https://testspace-client.s3.amazonaws.com/testspace-linux.tgz | sudo tar -zxvf- -C /usr/local/bin
+ - testspace publish @.testspace $TESTSPACE_TOKEN/${TRAVIS_BRANCH}#travis.Build.${TRAVIS_BUILD_NUMBER}

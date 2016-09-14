@@ -50,7 +50,7 @@ testspace @.testspace $TESTSPACE_TOKEN/$BRANCH_NAME
 </pre> 
 
 
-Checkout the [Space](https://samples.testspace.com/projects/php/spaces/php.unit). 
+Checkout the [Space](https://samples.testspace.com/projects/php.phpunit). 
 
 ***
 

@@ -8,13 +8,14 @@ env:
   global: 
    - secure: Ug5KuSwbLk2AF5dkSrGZ30VMsKR/UqugSc8y3IJtt1zARJYwNKgRU+e+2MCPBi78P9qZqEnwiK9zNzMpTBO/u8Bbs9/xG/4f0ixPFpyR8KUj8Mb6Kxr38Kr6qu1Wf/JHPW5+jR2sr5Sw2rfjyYACSOGoBExa33hwRoZtqPytghYYafoE+GNjSniwKm7Izub2HDd6zliErsOzcshlH+f76TrqPIqlSYmgDA/5PrPBP3I7QOJ8a5Y8QVQ8RNjI020QpUFqDzi7G/nZ/SmyIcr0oFQYGHmpV0+u196DjWfU/GdY5kygDsbxOgUcLoeWNkLXbTBmOtc2+dgEMj29uFy7Mg==
  
-script:
+build:
+ ci:
   - composer install
   - vendor/bin/phpcs src tests --report-gitblame=analysis-sniffer-blame.txt --report-checkstyle=analysis-sniffer.xml || true
   - vendor/bin/phpmd src,tests xml codesize,naming,unusedcode --reportfile analysis-mess.xml || true
   - vendor/bin/phpunit tests/unit --log-junit tests-results.xml --coverage-clover coverage.xml
  
-after_script: 
+ post_ci: 
   - curl -s https://testspace-client.s3.amazonaws.com/testspace-linux.tgz | sudo tar -zxvf- -C /usr/local/bin
   - testspace publish @.testspace $TESTSPACE_TOKEN/${BRANCH}#ship.Build.${BUILD_NUMBER}
 

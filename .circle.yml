@@ -4,6 +4,7 @@ machine:
  
 test:
   override:
+    - composer install
     - vendor/bin/phpcs src tests --report-gitblame=analysis-sniffer-blame.txt --report-checkstyle=analysis-sniffer.xml || true
     - vendor/bin/phpmd src,tests xml codesize,naming,unusedcode --reportfile analysis-mess.xml || true
     - vendor/bin/phpunit tests/unit --log-junit tests-results.xml --coverage-clover coverage.xml

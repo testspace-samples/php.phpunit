@@ -6,8 +6,8 @@ php:
  
 env:
   global: 
-   - secure: Ug5KuSwbLk2AF5dkSrGZ30VMsKR/UqugSc8y3IJtt1zARJYwNKgRU+e+2MCPBi78P9qZqEnwiK9zNzMpTBO/u8Bbs9/xG/4f0ixPFpyR8KUj8Mb6Kxr38Kr6qu1Wf/JHPW5+jR2sr5Sw2rfjyYACSOGoBExa33hwRoZtqPytghYYafoE+GNjSniwKm7Izub2HDd6zliErsOzcshlH+f76TrqPIqlSYmgDA/5PrPBP3I7QOJ8a5Y8QVQ8RNjI020QpUFqDzi7G/nZ/SmyIcr0oFQYGHmpV0+u196DjWfU/GdY5kygDsbxOgUcLoeWNkLXbTBmOtc2+dgEMj29uFy7Mg==
- 
+   - secure: ND2yONDKuoS6nW2BZqTnXSKqaXbaoO0ChmbAOhXIgOc79kxRalFEBajfT5hb9gMdVdZKaUwOif8MbHGYnKvvxMs1YKU8qG+GbIwQauAx29yHdKm/jV+BqHNDjYMhP6dIjldCg2Wn/g37NSYwFBFshePX5r6Q3UIppFw3MS06L0+Cfg4iOl1nccB8w+DxD4YhveS0wOiAWqZbMBaCr4SF01MQYUJP5D31pQBLLbI8ZuIE437kI+oFELLuFF7WEorYtPUnog7srlicGfOmwU+sIzpEcPR977TNnijtQ9RZ07AaqLdeiqF9cGYiSTVl5GkmbcfoWJPghuQv3dK3r2z1HA==
+
 build:
  ci:
   - composer install
@@ -15,7 +15,11 @@ build:
   - vendor/bin/phpmd src,tests xml codesize,naming,unusedcode --reportfile analysis-mess.xml || true
   - vendor/bin/phpunit tests/unit --log-junit tests-results.xml --coverage-clover coverage.xml
  
- post_ci: 
-  - curl -s https://testspace-client.s3.amazonaws.com/testspace-linux.tgz | sudo tar -zxvf- -C /usr/local/bin
-  - testspace publish @.testspace $TESTSPACE_TOKEN/${BRANCH}#ship.Build.${BUILD_NUMBER}
+# Requires TESTSPACE_TOKEN environment variable. 
+ on_success:
+   - curl -s https://testspace-client.s3.amazonaws.com/testspace-linux.tgz | sudo tar -zxvf- -C /usr/local/bin
+   - testspace @.testspace.txt $TESTSPACE_TOKEN/${SHIPPABLE_REPO_SLUG/\//:}/${BRANCH}#ship.Build.${BUILD_NUMBER}
 
+ on_failure:
+   - curl -s https://testspace-client.s3.amazonaws.com/testspace-linux.tgz | sudo tar -zxvf- -C /usr/local/bin
+   - testspace @.testspace.txt $TESTSPACE_TOKEN/${SHIPPABLE_REPO_SLUG/\//:}/${BRANCH}#ship.Build.${BUILD_NUMBER}

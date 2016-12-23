@@ -1,4 +1,5 @@
-[![Testspace](http://www.testspace.com/public/img/testspace_logo.png)](http://www.testspace.com)
+[![Testspace](http://www.testspace.com/img/Testspace.png)](http://www.testspace.com)
+
 ***
 
 ## PHP/PHPUnit sample for demonstrating Testspace 
@@ -15,10 +16,10 @@ Using Multiple Online CI Services:
 ***
 Publishing **Test Content** using www.testspace.com.
 
-[![Space Health](https://samples.testspace.com/projects/119/spaces/441/badge)](https://samples.testspace.com/projects/119/spaces/441 "Test Cases")
-[![Space Metric](https://samples.testspace.com/projects/119/spaces/441/metrics/267/badge)](https://samples.testspace.com/spaces/441/schema/Code%20Coverage "Code Coverage (statements)")
-[![Space Metric](https://samples.testspace.com/projects/119/spaces/441/metrics/266/badge)](https://samples.testspace.com/spaces/441/schema/Code%20Coverage "Code Coverage (methods)")
-[![Space Metric](https://samples.testspace.com/projects/119/spaces/441/metrics/268/badge)](https://samples.testspace.com/spaces/441/schema/Static%20Analysis "Static Analysis (issues)")
+[![Space Health](https://samples.testspace.com/projects/163/spaces/788/badge)](https://samples.testspace.com/projects/163/spaces/788 "Test Cases")
+[![Space Metric](https://samples.testspace.com/projects/163/spaces/788/metrics/727/badge)](https://samples.testspace.com/spaces/788/schema/Code%20Coverage "Code Coverage (methods)")
+[![Space Metric](https://samples.testspace.com/projects/163/spaces/788/metrics/728/badge)](https://samples.testspace.com/spaces/788/schema/Code%20Coverage "Code Coverage (statements)")
+[![Space Metric](https://samples.testspace.com/projects/163/spaces/788/metrics/729/badge)](https://samples.testspace.com/spaces/788/schema/Static%20Analysis "Static Analysis (issues)")
 
 
 ***
@@ -42,21 +43,21 @@ Running Tests with Code Coverage
 vendor/bin/phpunit tests/unit --log-junit tests-results.xml --coverage-clover coverage.xml
 </pre>
 
-Publishing Results using **Testspace**: (note, `.testspace` contains files to publish)
+Pushing Content using **Testspace client**: 
 
 <pre>
 curl -s https://testspace-client.s3.amazonaws.com/testspace-linux.tgz | sudo tar -zxvf- -C /usr/local/bin
-testspace @.testspace $TESTSPACE_TOKEN/$BRANCH_NAME
+testspace @.testspace.txt $TESTSPACE_TOKEN/$GITHUB_ORG:$REPO_NAME/$BRANCH_NAME#$BUILD_NUMBER
 </pre> 
 
-
-Checkout the [Space](https://samples.testspace.com/projects/php.phpunit). 
+Checkout the published [Test Content](https://samples.testspace.com/projects/testspace-samples:php.phpunit). Note that the `.testspace.txt` file contains the [set of files](http://help.testspace.com/how-to:publish-content#publishing-via-content-list-file) to publish. 
 
 ***
 
 To replicate this sample: 
-  - Account at www.testspace.com.
-  - CI Environment Variable called **TESTSPACE_TOKEN** required:
-    -  `TESTSPACE_TOKEN` = `credentials@my-org-name.testspace.com/my-project`
-    - `credentials` set to `username:password` or your [access token](http://help.testspace.com/reference:client-reference#login-credentials).
-    - `my-org-name.testspace.com/my-project` based on your *organization* (subdomain) and *project* names.  
+  - Setup account at www.testspace.com.
+  - Create a Environment variable called `TESTSPACE_TOKEN`
+     - `TESTSPACE_TOKEN` = `credentials@Your-Org-Name.testspace.com`
+     - `credentials` set to `username:password` or your [access token](http://help.testspace.com/reference:client-reference#login-credentials)
+     - To [use Testspace with a CI system](http://help.testspace.com/how-to:add-to-ci-workflow), store `TESTSPACE_TOKEN` as a secure environment variable
+     

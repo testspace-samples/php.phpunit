@@ -54,9 +54,7 @@ Running Tests with Code Coverage
 vendor/bin/phpunit tests/unit --log-junit tests-results.xml --coverage-clover coverage.xml
 </pre>
 
-Pushing Content using **Testspace client**: 
-
-Push Content using Testspace client 
+Push Content using Testspace client. Note that ".testspace.txt" contains list of items to push.
 
 <pre>
 testspace @.testspace.txt 

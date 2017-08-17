@@ -4,13 +4,17 @@ language:
 php:
  - 5.5
  
+before_script:
+  - mkdir -p $HOME/bin
+  - curl -fsSL https://testspace-client.s3.amazonaws.com/testspace-linux.tgz | tar -zxvf- -C $HOME/bin
+  - testspace config url samples.testspace.com
+  - composer install
+   
 script:
- - composer install
- - vendor/bin/phpcs src tests --report-gitblame=analysis-sniffer-blame.txt --report-checkstyle=analysis-sniffer.xml || true
- - vendor/bin/phpmd src,tests xml codesize,naming,unusedcode --reportfile analysis-mess.xml || true
- - vendor/bin/phpunit tests/unit --log-junit tests-results.xml --coverage-clover coverage.xml
+  - vendor/bin/phpcs src tests --report-gitblame=analysis-sniffer-blame.txt --report-checkstyle=analysis-sniffer.xml || true
+  - vendor/bin/phpmd src,tests xml codesize,naming,unusedcode --reportfile analysis-mess.xml || true
+  - vendor/bin/phpunit tests/unit --log-junit tests-results.xml --coverage-clover coverage.xml
 
-# Requires TESTSPACE_TOKEN environment variable.   
+# refer to ".testspace.txt" for list of content
 after_script:
-  - curl -s https://testspace-client.s3.amazonaws.com/testspace-linux.tgz | sudo tar -zxvf- -C /usr/local/bin
-  - testspace @.testspace.txt $TESTSPACE_TOKEN/${TRAVIS_REPO_SLUG/\//:}/${TRAVIS_BRANCH}#travis.Build.${TRAVIS_BUILD_NUMBER}
+  - testspace @.testspace.txt

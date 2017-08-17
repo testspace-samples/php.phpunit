@@ -1,10 +1,15 @@
-[![Testspace](http://www.testspace.com/img/Testspace.png)](http://www.testspace.com)
+[![Testspace](https://www.testspace.com/img/Testspace.png)](https://www.testspace.com)
 
 ***
 
 ## PHP/PHPUnit sample for demonstrating Testspace 
 
 Sample demonstrates techniques for using Testspace with PHP code and the [PHPUnit test framework](https://phpunit.de/).
+
+  * Using a Testspace Project that is `connected` with this GitHub Repo
+  * Using 3 Online CI services for demonstration purposes only
+  * Can review the Results at [testspace-samples:php.phpunit](https://samples.testspace.com/projects/testspace-samples:php.phpunit)  
+  * Refer to our [Getting Started](https://help.testspace.com/getting-started) help articles for more information
 
 ***
 Using Multiple Online CI Services:
@@ -16,13 +21,19 @@ Using Multiple Online CI Services:
 ***
 Publishing **Test Content** using www.testspace.com.
 
-[![Space Health](https://samples.testspace.com/spaces/788/badge)](https://samples.testspace.com/spaces/788 "Test Cases")
-[![Space Metric](https://samples.testspace.com/spaces/788/metrics/727/badge)](https://samples.testspace.com/spaces/788/schema/Code%20Coverage "Code Coverage (methods)")
-[![Space Metric](https://samples.testspace.com/spaces/788/metrics/728/badge)](https://samples.testspace.com/spaces/788/schema/Code%20Coverage "Code Coverage (statements)")
-[![Space Metric](https://samples.testspace.com/spaces/788/metrics/729/badge)](https://samples.testspace.com/spaces/788/schema/Static%20Analysis "Static Analysis (issues)")
-
+[![Space Health](https://samples.testspace.com/spaces/788/badge?token=a5b5d2ad4ec3d1e2eefc87cbe8c994342047dad4)](https://samples.testspace.com/spaces/788 "Test Cases")
+[![Space Metric](https://samples.testspace.com/spaces/788/metrics/728/badge?token=19e7e9c538ae12e6720cf1487ce7c67520613293)](https://samples.testspace.com/spaces/788/schema/Code%20Coverage "Code Coverage (statements)")
+[![Space Metric](https://samples.testspace.com/spaces/788/metrics/729/badge?token=615ea7773881334762ac85f47402bf4f559d67ed)](https://samples.testspace.com/spaces/788/schema/Static%20Analysis "Static Analysis (issues)")
 
 ***
+
+Download and configure the Testspace client 
+
+<pre>
+mkdir -p $HOME/bin
+curl -s https://testspace-client.s3.amazonaws.com/testspace-linux.tgz | tar -zxvf- -C $HOME/bin
+testspace config url samples.testspace.com
+</pre>
 
 In order to run this sample you will need a host workstation that supports the PHP.
 
@@ -45,19 +56,9 @@ vendor/bin/phpunit tests/unit --log-junit tests-results.xml --coverage-clover co
 
 Pushing Content using **Testspace client**: 
 
+Push Content using Testspace client 
+
 <pre>
-curl -s https://testspace-client.s3.amazonaws.com/testspace-linux.tgz | sudo tar -zxvf- -C /usr/local/bin
-testspace @.testspace.txt $TESTSPACE_TOKEN/$GITHUB_ORG:$REPO_NAME/$BRANCH_NAME#$BUILD_NUMBER
+testspace @.testspace.txt 
 </pre> 
 
-Checkout the published [Test Content](https://samples.testspace.com/projects/testspace-samples:php.phpunit). Note that the `.testspace.txt` file contains the [set of files](http://help.testspace.com/how-to:publish-content#publishing-via-content-list-file) to publish. 
-
-***
-
-To replicate this sample: 
-  - Setup account at www.testspace.com.
-  - Create a Environment variable called `TESTSPACE_TOKEN`
-     - `TESTSPACE_TOKEN` = `credentials@Your-Org-Name.testspace.com`
-     - `credentials` set to `username:password` or your [access token](http://help.testspace.com/reference:client-reference#login-credentials)
-     - To [use Testspace with a CI system](http://help.testspace.com/how-to:add-to-ci-workflow), store `TESTSPACE_TOKEN` as a secure environment variable
-     

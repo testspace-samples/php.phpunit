@@ -1,7 +1,12 @@
 machine:
  php:
    version: 5.5
- 
+
+dependencies:
+  pre:
+   - curl -fsSL https://testspace-client.s3.amazonaws.com/testspace-linux.tgz | tar -zxvf- -C $HOME/bin
+   - testspace config url samples.testspace.com
+   
 test:
   override:
     - composer install
@@ -9,7 +14,7 @@ test:
     - vendor/bin/phpmd src,tests xml codesize,naming,unusedcode --reportfile analysis-mess.xml || true
     - vendor/bin/phpunit tests/unit --log-junit tests-results.xml --coverage-clover coverage.xml
 
-# Requires TESTSPACE_TOKEN environment variable.      
+# refer to ".testspace.txt" for list of content    
   post:
-    - curl -s https://testspace-client.s3.amazonaws.com/testspace-linux.tgz | sudo tar -zxvf- -C /usr/local/bin
-    - testspace @.testspace.txt $TESTSPACE_TOKEN/${CIRCLE_PROJECT_USERNAME}:${CIRCLE_PROJECT_REPONAME}/${CIRCLE_BRANCH}#circle.Build.${CIRCLE_BUILD_NUM}
+    - testspace @.testspace.txt
+

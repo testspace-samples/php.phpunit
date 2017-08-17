@@ -4,22 +4,19 @@ language:
 php:
  - 5.5
  
-env:
-  global: 
-   - secure: ND2yONDKuoS6nW2BZqTnXSKqaXbaoO0ChmbAOhXIgOc79kxRalFEBajfT5hb9gMdVdZKaUwOif8MbHGYnKvvxMs1YKU8qG+GbIwQauAx29yHdKm/jV+BqHNDjYMhP6dIjldCg2Wn/g37NSYwFBFshePX5r6Q3UIppFw3MS06L0+Cfg4iOl1nccB8w+DxD4YhveS0wOiAWqZbMBaCr4SF01MQYUJP5D31pQBLLbI8ZuIE437kI+oFELLuFF7WEorYtPUnog7srlicGfOmwU+sIzpEcPR977TNnijtQ9RZ07AaqLdeiqF9cGYiSTVl5GkmbcfoWJPghuQv3dK3r2z1HA==
-
 build:
  ci:
+  - mkdir -p $HOME/bin
+  - curl -fsSL https://testspace-client.s3.amazonaws.com/testspace-linux.tgz | tar -zxvf- -C $HOME/bin
+  - testspace config url samples.testspace.com
   - composer install
   - vendor/bin/phpcs src tests --report-gitblame=analysis-sniffer-blame.txt --report-checkstyle=analysis-sniffer.xml || true
   - vendor/bin/phpmd src,tests xml codesize,naming,unusedcode --reportfile analysis-mess.xml || true
   - vendor/bin/phpunit tests/unit --log-junit tests-results.xml --coverage-clover coverage.xml
- 
-# Requires TESTSPACE_TOKEN environment variable. 
+
+# refer to ".testspace.txt" for list of content
  on_success:
-   - curl -s https://testspace-client.s3.amazonaws.com/testspace-linux.tgz | sudo tar -zxvf- -C /usr/local/bin
-   - testspace @.testspace.txt $TESTSPACE_TOKEN/${SHIPPABLE_REPO_SLUG/\//:}/${BRANCH}#ship.Build.${BUILD_NUMBER}
+  - testspace @.testspace.txt 
 
  on_failure:
-   - curl -s https://testspace-client.s3.amazonaws.com/testspace-linux.tgz | sudo tar -zxvf- -C /usr/local/bin
-   - testspace @.testspace.txt $TESTSPACE_TOKEN/${SHIPPABLE_REPO_SLUG/\//:}/${BRANCH}#ship.Build.${BUILD_NUMBER}
+  - testspace @.testspace.txt  

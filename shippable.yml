@@ -15,8 +15,5 @@ build:
   - vendor/bin/phpunit tests/unit --log-junit tests-results.xml --coverage-clover coverage.xml
 
 # refer to ".testspace.txt" for list of content
- on_success:
-  - testspace @.testspace.txt 
-
- on_failure:
+ always:
   - testspace @.testspace.txt  

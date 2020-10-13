@@ -2,21 +2,21 @@
 
 ***
 
-## PHP/PHPUnit sample for demonstrating Testspace 
+## PHP/PHPUnit sample for demonstrating Testspace
 
 Sample demonstrates techniques for using Testspace with PHP code and the [PHPUnit test framework](https://phpunit.de/).
 
   * Using a Testspace Project that is `connected` with this GitHub Repo
   * Using 3 Online CI services for demonstration purposes only
-  * Can review the Results at [testspace-samples:php.phpunit](https://samples.testspace.com/projects/testspace-samples:php.phpunit)  
-  * Refer to our [Getting Started](https://help.testspace.com/getting-started) help articles for more information
+  * Can review the Results at [testspace-samples:php.phpunit](https://samples.testspace.com/projects/testspace-samples:php.phpunit)
+  * Refer to our [Help](https://help.testspace.com/) for more information
 
 ***
 Using Multiple Online CI Services:
 
+![Build](https://github.com/testspace-samples/php.phpunit/workflows/Build/badge.svg)
 [![Build Status](https://travis-ci.org/testspace-samples/php.phpunit.svg?branch=master)](https://travis-ci.org/testspace-samples/php.phpunit)
 [![CircleCI](https://circleci.com/gh/testspace-samples/php.phpunit.svg?style=svg)](https://circleci.com/gh/testspace-samples/php.phpunit)
-[![Run Status](https://api.shippable.com/projects/57029e282a8192902e1b8d56/badge?branch=master)](https://app.shippable.com/projects/57029e282a8192902e1b8d56)
 
 ***
 Publishing **Test Content** using www.testspace.com.
@@ -27,7 +27,7 @@ Publishing **Test Content** using www.testspace.com.
 
 ***
 
-Download and configure the Testspace client 
+Download and configure the Testspace client
 
 <pre>
 mkdir -p $HOME/bin
@@ -42,7 +42,7 @@ Installation
 composer update
 </pre>
 
-Running Static Analysis: 
+Running Static Analysis:
 
 <pre>
 vendor/bin/phpcs src tests --report-gitblame=analysis-sniffer-blame.txt --report-checkstyle=analysis-sniffer.xml
@@ -57,6 +57,6 @@ vendor/bin/phpunit tests/unit --log-junit tests-results.xml --coverage-clover co
 Push Content using Testspace client. Note that ".testspace.txt" contains list of items to push.
 
 <pre>
-testspace @.testspace.txt 
-</pre> 
+testspace @.testspace.txt
+</pre>
 
